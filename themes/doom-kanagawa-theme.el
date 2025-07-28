@@ -249,7 +249,7 @@
 
 ;; Line numbers and cursor line
 ((line-number &override) :foreground base5 :background bg)
-((line-number-current-line &override) :foreground blue :background base1 :weight 'bold)
+((line-number-current-line &override) :foreground blue :background bg :weight 'bold)
 (hl-line :background base1)
 
 ;; Font lock
