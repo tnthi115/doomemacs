@@ -63,7 +63,7 @@
 
 ;; FONTS
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 13.2 :weight 'light)
-      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 13.2 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 13.2 :weight 'light)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
 (after! doom-themes
   (setq doom-themes-enable-bold t
