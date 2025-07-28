@@ -6,6 +6,20 @@ This repository contains a Doom Emacs configuration. Please follow these guideli
 
 ---
 
+## Configuration Lookup Order
+
+When searching for configuration, always check in this order:
+
+1. **User’s Doom config directory:** `~/.config/doom/`
+2. **User’s Emacs config directory:** `~/.config/emacs/`
+3. **Upstream Doom Emacs config and documentation:**
+   - [https://github.com/doomemacs/doomemacs](https://github.com/doomemacs/doomemacs)
+   - [https://docs.doomemacs.org/](https://docs.doomemacs.org/)
+
+Always prefer user-specific configuration first, then fall back to upstream or general documentation.
+
+---
+
 ## Build, Lint, and Test Commands
 
 - **Sync Doom modules and packages:**  
