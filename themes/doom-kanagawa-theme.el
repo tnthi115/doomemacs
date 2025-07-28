@@ -1,0 +1,511 @@
+;;; doom-kanagawa-theme.el --- Kanagawa theme for Doom Emacs -*- lexical-binding: t; no-byte-compile: t; -*-
+;;
+;; Author: OpenCode Agent
+;; Source: https://github.com/rebelot/kanagawa.nvim
+;;
+;;; Commentary:
+;;  A dark theme based on the Kanagawa.nvim theme with "wave" palette and background.
+;;
+;;; Code:
+
+(require 'doom-themes)
+
+;;
+;;; Variables
+
+(defgroup doom-kanagawa-theme nil
+  "Options for doom-kanagawa theme."
+  :group 'doom-themes)
+
+(defcustom doom-kanagawa-brighter-modeline nil
+  "If non-nil, more vivid colors will be used to style the mode-line."
+  :group 'doom-kanagawa-theme
+  :type 'boolean)
+
+(defcustom doom-kanagawa-brighter-comments nil
+  "If non-nil, comments will be highlighted in more vivid colors."
+  :group 'doom-kanagawa-theme
+  :type 'boolean)
+
+(defcustom doom-kanagawa-comment-bg doom-kanagawa-brighter-comments
+  "If non-nil, comments will have a subtle, darker background. Enhancing their legibility."
+  :group 'doom-kanagawa-theme
+  :type 'boolean)
+
+(defcustom doom-kanagawa-padded-modeline nil
+  "If non-nil, adds a 4px padding to the mode-line. Can be an integer to determine the exact padding."
+  :group 'doom-kanagawa-theme
+  :type '(or integer boolean))
+
+
+;;
+;;; Theme definition
+
+(def-doom-theme doom-kanagawa
+  "A dark theme inspired by Kanagawa.nvim, using the wave palette and background."
+
+  ;; Palette: Latest Kanagawa.nvim "wave" colors
+  (
+   (bg         '("#1F1F28" nil nil))       ;; sumiInk3
+   (bg-alt     '("#16161D" nil nil))       ;; sumiInk0
+   (base0      '("#1F1F28" nil nil))       ;; sumiInk3
+   (base1      '("#2A2A37" nil nil))       ;; sumiInk4
+   (base2      '("#363646" nil nil))       ;; sumiInk5
+   (base3      '("#54546D" nil nil))       ;; sumiInk6
+   (base4      '("#625e5a" nil nil))       ;; dragonBlack6
+   (base5      '("#727169" nil nil))       ;; fujiGray
+   (base6      '("#C8C093" nil nil))       ;; oldWhite
+   (base7      '("#DCD7BA" nil nil))       ;; fujiWhite
+   (base8      '("#DCD7BA" nil nil))       ;; fujiWhite
+   (fg-alt     '("#C8C093" nil nil))       ;; oldWhite
+   (fg         '("#DCD7BA" nil nil))       ;; fujiWhite
+   (grey       base5)
+   (red        '("#E46876" nil nil))       ;; waveRed
+   (orange     '("#FFA066" nil nil))       ;; surimiOrange
+   (green      '("#98BB6C" nil nil))       ;; springGreen
+   (teal       '("#7AA89F" nil nil))       ;; waveAqua2
+   (yellow     '("#E6C384" nil nil))       ;; carpYellow
+   (blue       '("#7E9CD8" nil nil))       ;; crystalBlue
+   (dark-blue  '("#223249" nil nil))       ;; waveBlue1
+   (magenta    '("#957FB8" nil nil))       ;; oniViolet
+   (violet     '("#938AA9" nil nil))       ;; springViolet1
+   (cyan       '("#6A9589" nil nil))       ;; waveAqua1
+   (dark-cyan  '("#7FB4CA" nil nil))       ;; springBlue
+   (pink       '("#D27E99" nil nil))       ;; sakuraPink
+   (bg-popup   '(nil nil nil))              ;; transparent popup (bg_gutter = "none")
+   (bg-search  '("#2D4F67" nil nil))       ;; waveBlue2
+   (bg-diff-add    '("#2B3328" nil nil))   ;; winterGreen
+   (bg-diff-change '("#49443C" nil nil))   ;; winterYellow
+   (bg-diff-delete '("#43242B" nil nil))   ;; winterRed
+   (bg-diff-line   '("#252535" nil nil))   ;; winterBlue
+   (bg-tab-selected '("#2A2A37" nil nil))  ;; sumiInk4
+   (git-add    '("#76946A" nil nil))       ;; autumnGreen
+   (git-del    '("#C34043" nil nil))       ;; autumnRed
+   (git-change '("#DCA561" nil nil))       ;; autumnYellow
+   (diag-error '("#E82424" nil nil))       ;; samuraiRed
+   (diag-warning '("#FF9E3B" nil nil))     ;; roninYellow
+   (diag-info  '("#658594" nil nil))       ;; dragonBlue
+   (diag-hint  '("#6A9589" nil nil))       ;; waveAqua1
+   (highlight      blue)
+   (vertical-bar   (doom-lighten bg 0.05))
+   (selection      dark-blue)
+   (builtin        red)
+   (comments       (if doom-kanagawa-brighter-comments base6 base5))
+   (doc-comments   (doom-lighten (if doom-kanagawa-brighter-comments base6 base5) 0.25))
+   (constants      orange)
+   (functions      blue)
+   (keywords       magenta)
+   (methods        cyan)
+   (operators      teal)
+   (type           yellow)
+   (strings        green)
+   (variables      fg)
+   (numbers        orange)
+   (region         (doom-lighten bg 0.15))
+   (error          diag-error)
+   (warning        diag-warning)
+   (success        green)
+   (vc-modified    git-change)
+   (vc-added       git-add)
+   (vc-deleted     git-del)
+   (hidden     '("#181616" "black" "black"))
+   (-modeline-bright doom-kanagawa-brighter-modeline)
+   (-modeline-pad
+    (when doom-kanagawa-padded-modeline
+      (if (integerp doom-kanagawa-padded-modeline) doom-kanagawa-padded-modeline 4)))
+   (modeline-fg     nil)
+   (modeline-fg-alt base6)
+   (modeline-bg
+    (if -modeline-bright
+        base3
+      `(,(doom-darken (car bg) 0.15) ,@(cdr base0))))
+   (modeline-bg-l
+    (if -modeline-bright
+        base3
+      `(,(doom-darken (car bg) 0.1) ,@(cdr base0))))
+   (modeline-bg-inactive   (doom-darken bg 0.1))
+   (modeline-bg-inactive-l `(,(car bg) ,@(cdr base1)))
+  )
+
+  ;; Faces
+  (
+   ;; Default face (this is the most important fix)
+(default :background bg :foreground fg)
+
+;; Universal background enforcement for major UI elements
+(buffer-menu-buffer :background bg :foreground fg)
+(internal-border :background bg)
+(header-line-highlight :background bg :foreground fg)
+(child-frame-border :background bg)
+(transient-separator :background bg)
+(transient-heading :background bg)
+
+;; Line numbers and cursor line
+((line-number &override) :foreground base5 :background bg)
+((line-number-current-line &override) :foreground blue :background bg :weight 'bold)
+(hl-line :background bg)
+
+;; Font lock
+(font-lock-comment-face :foreground comments :slant 'italic :background (if doom-kanagawa-comment-bg (doom-lighten bg 0.05) bg))
+(font-lock-doc-face :inherit 'font-lock-comment-face :slant 'italic :foreground doc-comments :background bg)
+(font-lock-constant-face :foreground constants :background bg)
+(font-lock-function-name-face :foreground functions :background bg)
+(font-lock-keyword-face :foreground keywords :slant 'italic :background bg)
+(font-lock-statement-face :foreground keywords :weight 'bold :background bg)
+(font-lock-string-face :foreground strings :background bg)
+(font-lock-type-face :foreground type :background bg)
+(font-lock-variable-name-face :foreground variables :background bg)
+(font-lock-warning-face :foreground warning :background bg)
+(font-lock-negation-char-face :foreground operators :background bg)
+(font-lock-preprocessor-face :foreground operators :background bg)
+(font-lock-preprocessor-char-face :foreground operators :background bg)
+(font-lock-regexp-grouping-backslash :foreground operators :background bg)
+(font-lock-regexp-grouping-construct :foreground operators :background bg)
+
+;; Modeline
+(mode-line :background bg :foreground modeline-fg :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,bg)))
+(mode-line-inactive :background bg :foreground modeline-fg-alt :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,bg)))
+(mode-line-emphasis :foreground (if -modeline-bright base8 highlight) :background bg)
+(mode-line-buffer-id :foreground highlight :bold bold :background bg)
+
+;; Doom modeline
+(doom-modeline-bar :background bg)
+(doom-modeline-buffer-modified :foreground orange :background bg)
+(doom-modeline-buffer-path :foreground blue :weight 'normal :background bg)
+(doom-modeline-buffer-file :foreground fg :weight 'normal :background bg)
+(doom-modeline-project-dir :foreground violet :weight 'normal :background bg)
+(doom-modeline-project-root-dir :foreground violet :weight 'normal :background bg)
+(doom-modeline-highlight :foreground blue :background bg)
+(doom-modeline-panel :background bg :foreground fg)
+(doom-modeline-evil-normal-state :foreground green :background bg)
+(doom-modeline-evil-insert-state :foreground blue :background bg)
+(doom-modeline-evil-visual-state :foreground magenta :background bg)
+
+;; Highlight line
+(hl-line :background bg)
+
+;; Ivy
+(ivy-minibuffer-match-face-1 :foreground blue :background bg)
+(ivy-minibuffer-match-face-2 :foreground orange :background bg)
+(ivy-minibuffer-match-face-3 :foreground green :background bg)
+(ivy-minibuffer-match-face-4 :foreground yellow :background bg)
+
+;; Vertico
+(vertico-current :background bg :foreground fg)
+
+;; Solaire mode
+(solaire-mode-line-face :inherit 'mode-line :background bg :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,bg)))
+(solaire-mode-line-inactive-face :inherit 'mode-line-inactive :background bg :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,bg)))
+
+;; Magit
+(magit-diff-hunk-heading :foreground fg-alt :background bg :extend t)
+(magit-diff-hunk-heading-highlight :foreground fg :background bg :weight 'bold :extend t)
+(magit-section-heading :foreground blue :weight 'bold :background bg)
+(magit-branch-remote :foreground green :background bg)
+(magit-branch-local :foreground blue :background bg)
+(magit-branch-current :foreground teal :background bg)
+(magit-diff-added :foreground (doom-darken git-add 0.2) :background bg :extend t)
+(magit-diff-added-highlight :foreground git-add :background bg :weight 'bold :extend t)
+(magit-diff-removed :foreground (doom-darken git-del 0.2) :background bg :extend t)
+(magit-diff-removed-highlight :foreground git-del :background bg :weight 'bold :extend t)
+(magit-diff-lines-heading :foreground yellow :background bg :extend t)
+(magit-diff-context :foreground fg-alt :background bg)
+(magit-diff-context-highlight :foreground fg :background bg)
+
+;; Rainbow delimiters
+(rainbow-delimiters-depth-1-face :foreground fg :background bg)
+(rainbow-delimiters-depth-2-face :foreground blue :background bg)
+(rainbow-delimiters-depth-3-face :foreground orange :background bg)
+(rainbow-delimiters-depth-4-face :foreground green :background bg)
+(rainbow-delimiters-depth-5-face :foreground cyan :background bg)
+(rainbow-delimiters-depth-6-face :foreground yellow :background bg)
+(rainbow-delimiters-depth-7-face :foreground teal :background bg)
+
+;; Treemacs
+(treemacs-root-face :foreground magenta :weight 'bold :height 1.2 :background bg)
+(doom-themes-treemacs-root-face :foreground magenta :weight 'bold :height 1.2 :background bg)
+(doom-themes-treemacs-file-face :foreground fg :background bg)
+(treemacs-directory-face :foreground fg-alt :background bg)
+(treemacs-file-face :foreground fg :background bg)
+(treemacs-git-modified-face :foreground yellow :background bg)
+(treemacs-git-added-face :foreground green :background bg)
+(treemacs-git-renamed-face :foreground orange :background bg)
+(treemacs-git-untracked-face :foreground teal :background bg)
+(treemacs-git-ignored-face :foreground (doom-lighten base5 0.6) :background bg)
+(treemacs-git-conflict-face :foreground red :background bg)
+(cfrs-border-color :background bg)
+(treemacs-fringe-indicator-face :foreground fg :background bg)
+(treemacs-tags-face :inherit 'font-lock-function-name-face :background bg)
+(treemacs-help-title-face :foreground fg :background bg)
+(treemacs-help-column-face :foreground blue :background bg)
+(treemacs-on-success-pulse-face :background bg :foreground fg)
+(treemacs-on-failure-pulse-face :background bg :foreground fg)
+(treemacs-directory-collapsed-face :foreground fg-alt :background bg)
+(treemacs-header-face :foreground fg :underline t :background bg)
+(treemacs-header-button-face :foreground fg :background bg)
+(treemacs-term-node-face :foreground green :background bg)
+(treemacs-async-loading-face :foreground yellow :background bg)
+(treemacs-peek-mode-indicator-face :foreground magenta :background bg)
+(treemacs-marked-file-face :foreground red :background bg)
+(treemacs-hl-line :background bg :extend t)
+(treemacs-file-face-extensions :inherit 'treemacs-file-face :background bg)
+(treemacs-directory-open-face :foreground fg-alt :background bg)
+(treemacs-git-unmodified-face :foreground fg :background bg)
+(treemacs-root-remote-face :inherit 'treemacs-root-face :foreground blue :background bg)
+(treemacs-root-remote-disconnected-face :inherit 'treemacs-root-face :foreground red :background bg)
+(treemacs-root-untagged-face :inherit 'treemacs-root-face :background bg)
+(treemacs-root-tagged-face :inherit 'treemacs-root-face :background bg)
+
+;; Dashboard
+(dashboard-banner-logo-title :foreground fg :background bg)
+(dashboard-heading :foreground blue :background bg)
+(dashboard-text-banner :foreground fg :background bg)
+(dashboard-items-face :foreground fg :background bg)
+(dashboard-no-items-face :foreground base5 :background bg)
+(dashboard-navigator :foreground teal :background bg)
+(dashboard-footer :foreground fg-alt :background bg)
+(dashboard-footer-face :foreground fg-alt :background bg)
+(dashboard-loaded :foreground green :background bg)
+(dashboard-heading-face :foreground blue :background bg)
+(dashboard-selected-item :foreground blue :background bg :weight 'bold)
+(dashboard-active-item :foreground blue :background bg :weight 'bold)
+(widget-button :foreground blue :bold t :background bg)
+(widget-button-pressed :foreground red :background bg)
+(widget-documentation :foreground fg-alt :background bg)
+(button :foreground blue :box '(:line-width 1 :style released-button) :background bg)
+
+;; Buffer-local tooltip/help text
+(marginalia-documentation :foreground fg-alt :background bg)
+(completions-annotations :foreground fg-alt :background bg)
+
+;; Company
+(company-tooltip :background bg :foreground fg)
+(company-tooltip-annotation :foreground cyan :background bg)
+(company-tooltip-annotation-selection :foreground cyan :weight 'bold :background bg)
+(company-tooltip-selection :background bg :foreground fg)
+(company-tooltip-common :foreground yellow :weight 'bold :background bg)
+(company-tooltip-common-selection :foreground yellow :weight 'bold :background bg)
+(company-scrollbar-bg :background bg)
+(company-scrollbar-fg :background bg)
+(company-preview :background bg :foreground fg)
+(company-preview-common :foreground yellow :weight 'bold :background bg)
+
+;; Dired
+(dired-directory :foreground blue :background bg)
+(dired-marked :foreground yellow :background bg)
+(dired-symlink :foreground teal :background bg)
+(dired-header :foreground orange :background bg)
+
+;; Flycheck
+(flycheck-error :underline `(:style wave :color ,diag-error) :background bg)
+(flycheck-warning :underline `(:style wave :color ,diag-warning) :background bg)
+(flycheck-info :underline `(:style wave :color ,diag-info) :background bg)
+
+;; Org
+(org-level-1 :foreground blue :weight 'bold :extend t :height 1.2 :background bg)
+(org-level-2 :foreground magenta :weight 'bold :extend t :height 1.15 :background bg)
+(org-level-3 :foreground green :weight 'bold :extend t :height 1.1 :background bg)
+(org-level-4 :foreground yellow :weight 'bold :extend t :height 1.05 :background bg)
+(org-level-5 :foreground violet :weight 'bold :extend t :background bg)
+(org-level-6 :foreground red :weight 'bold :extend t :background bg)
+(org-level-7 :foreground cyan :weight 'bold :extend t :background bg)
+(org-level-8 :foreground teal :weight 'bold :extend t :background bg)
+(org-todo :foreground orange :weight 'bold :background bg)
+(org-done :foreground green :weight 'bold :background bg)
+(org-headline-done :foreground base5 :strike-through t :background bg)
+(org-link :foreground teal :underline t :background bg)
+(org-code :foreground yellow :background bg)
+(org-special-keyword :foreground magenta :background bg)
+(org-block :background bg :extend t)
+(org-block-begin-line :foreground base5 :background bg :extend t)
+(org-block-end-line :foreground base5 :background bg :extend t)
+(org-quote :foreground blue :background bg :extend t)
+(org-table :foreground violet :background bg)
+(org-document-title :foreground cyan :weight 'bold :height 1.3 :background bg)
+(org-document-info :foreground cyan :background bg)
+(org-date :foreground magenta :background bg)
+(org-drawer :foreground base5 :background bg)
+(org-agenda-structure :foreground blue :background bg)
+(org-agenda-date :foreground fg :background bg)
+(org-agenda-date-today :foreground fg :weight 'bold :background bg)
+(org-scheduled :foreground fg :background bg)
+(org-scheduled-today :foreground fg :background bg)
+(org-scheduled-previously :foreground base5 :background bg)
+(org-upcoming-deadline :foreground orange :background bg)
+(org-deadline-announce :foreground red :background bg)
+(org-formula :foreground green :background bg)
+(org-tag :foreground (doom-darken cyan 0.2) :weight 'normal :background bg)
+(org-checkbox :foreground blue :weight 'normal :background bg)
+(org-checkbox-statistics-todo :foreground blue :weight 'normal :background bg)
+(org-checkbox-statistics-done :foreground green :weight 'normal :background bg)
+
+;; Terminal
+(term-color-black :foreground bg-alt :background bg)
+(term-color-red :foreground red :background bg)
+(term-color-green :foreground green :background bg)
+(term-color-yellow :foreground yellow :background bg)
+(term-color-blue :foreground blue :background bg)
+(term-color-magenta :foreground magenta :background bg)
+(term-color-cyan :foreground cyan :background bg)
+(term-color-white :foreground fg :background bg)
+
+;; CSS
+(css-property :foreground green :background bg)
+(css-selector :foreground blue :background bg)
+(css-pseudo-class :foreground orange :background bg)
+
+;; JavaScript/TypeScript
+(js2-function-param :foreground orange :background bg)
+(js2-object-property :foreground green :background bg)
+(typescript-this-face :foreground red :background bg)
+(typescript-access-modifier-face :foreground magenta :background bg)
+
+;; Web-mode
+(web-mode-html-tag-face :foreground red :background bg)
+(web-mode-html-tag-bracket-face :foreground (doom-lighten red 0.3) :background bg)
+(web-mode-html-attr-name-face :foreground orange :background bg)
+(web-mode-html-attr-value-face :foreground green :background bg)
+(web-mode-css-property-name-face :foreground green :background bg)
+(web-mode-css-selector-face :foreground blue :background bg)
+(web-mode-json-key-face :foreground yellow :background bg)
+(web-mode-json-context-face :foreground orange :background bg)
+
+;; Markdown
+(markdown-markup-face :foreground base5 :background bg)
+(markdown-header-face :inherit 'bold :foreground blue :background bg)
+(markdown-header-delimiter-face :foreground base5 :background bg)
+(markdown-metadata-key-face :foreground base5 :background bg)
+(markdown-metadata-value-face :foreground cyan :background bg)
+(markdown-list-face :foreground magenta :background bg)
+(markdown-bold-face :inherit 'bold :foreground orange :background bg)
+(markdown-italic-face :inherit 'italic :foreground green :background bg)
+(markdown-link-face :foreground blue :background bg)
+(markdown-url-face :foreground violet :underline t :background bg)
+(markdown-code-face :foreground yellow :background bg)
+(markdown-inline-code-face :foreground yellow :background bg)
+(markdown-blockquote-face :foreground base6 :slant 'italic :background bg)
+(markdown-table-face :foreground blue :background bg)
+
+;; Whitespace
+(whitespace-empty :background bg)
+(whitespace-space :foreground base4 :background bg)
+(whitespace-tab :foreground base4 :background bg)
+(whitespace-newline :foreground base4 :background bg)
+(whitespace-line :background bg :foreground red)
+
+;; LSP
+(lsp-face-highlight-read :background bg)
+(lsp-face-highlight-write :background bg)
+(lsp-face-highlight-textual :background bg)
+(lsp-headerline-breadcrumb-path-face :foreground base7 :background bg)
+(lsp-headerline-breadcrumb-path-error-face :foreground error :background bg)
+(lsp-headerline-breadcrumb-separator-face :foreground cyan :background bg)
+
+;; Additional UI elements
+(tooltip :background bg :foreground fg)
+(fringe :background bg)
+(widget-field :background bg :foreground fg)
+(widget-single-line-field :background bg)
+
+;; Help/documentation-related
+(help-key-binding :background bg :foreground fg)
+(Info-quoted :foreground green :background bg)
+(info-menu-star :foreground red :background bg)
+(help-argument-name :foreground orange :background bg)
+
+;; Dashboard hover text and related elements
+(eldoc-highlight-function-argument :foreground yellow :bold t :background bg)
+(eldoc-box-border :background bg :foreground fg-alt)
+(eldoc-box-body :background bg :foreground fg)
+(dashboard-text-banner :foreground fg :background bg)
+(dashboard-banner-logo-title :foreground fg :background bg)
+(dashboard-items-face :foreground fg :background bg)
+(echo-area :background bg :foreground fg)
+(window-divider :foreground base4 :background bg)
+(window-divider-first-pixel :foreground base4 :background bg)
+(window-divider-last-pixel :foreground base4 :background bg)
+(minibuffer-prompt :foreground blue :background bg)
+
+;; Popup windows
+(lsp-ui-doc-background :background bg)
+(lsp-ui-doc-header :background bg :foreground blue)
+(lsp-ui-doc-border :foreground fg-alt :background bg)
+(lsp-ui-peek-header :background bg :foreground blue)
+(lsp-ui-peek-highlight :foreground yellow :weight 'bold :background bg)
+(lsp-ui-peek-list :background bg)
+(lsp-ui-peek-filename :foreground blue :background bg)
+(lsp-ui-peek-line-number :foreground base5 :background bg)
+(lsp-ui-peek-selection :foreground fg :bold t :background bg)
+(lsp-ui-sideline-code-action :foreground yellow :background bg)
+(lsp-ui-sideline-current-symbol :foreground blue :weight 'bold :background bg)
+(lsp-ui-sideline-symbol :foreground fg-alt :background bg)
+
+;; Transient/popup-menu faces
+(transient-separator :foreground base5 :background bg)
+(transient-heading :foreground blue :weight 'bold :background bg)
+(transient-argument :foreground green :weight 'bold :background bg)
+(transient-value :foreground teal :background bg)
+(transient-inactive-value :foreground base5 :background bg)
+(transient-inactive-argument :foreground base5 :background bg)
+
+;; Popup menu faces
+(popup-face :foreground fg :background bg)
+(popup-menu-face :foreground fg :background bg)
+(popup-menu-selection-face :background bg :foreground fg :weight 'bold)
+(popup-tip-face :foreground fg-alt :background bg)
+(popup-menu-summary-face :foreground base5 :background bg)
+
+;; Posframe faces
+(posframe-border :background bg)
+(posframe-fringe :background bg)
+
+;; tab-bar and tab-line
+(tab-bar :background bg :foreground fg)
+(tab-bar-tab :background bg :foreground fg)
+(tab-bar-tab-inactive :background bg :foreground base5)
+(tab-line :background bg :foreground fg)
+(tab-line-tab :background bg :foreground fg)
+(tab-line-tab-inactive :background bg :foreground base5)
+(tab-line-tab-current :background bg :foreground fg)
+(tab-line-highlight :background bg :foreground fg)
+
+;; which-key
+(which-key-key-face :foreground green :background bg)
+(which-key-group-description-face :foreground red :background bg)
+(which-key-command-description-face :foreground blue :background bg)
+(which-key-local-map-description-face :foreground orange :background bg)
+(which-key-separator-face :foreground base5 :background bg)
+(which-key-special-key-face :foreground yellow :weight 'bold :background bg)
+(which-key-note-face :foreground base5 :background bg)
+(which-key-highlighted-command-face :foreground blue :weight 'bold :background bg)
+(which-key-posframe :background bg)
+(which-key-posframe-border :background bg)
+
+;; centaur-tabs
+(centaur-tabs-default :background bg :foreground fg)
+(centaur-tabs-selected :background bg :foreground fg :weight 'bold)
+(centaur-tabs-unselected :background bg :foreground base5)
+(centaur-tabs-selected-modified :background bg :foreground yellow :weight 'bold)
+(centaur-tabs-unselected-modified :background bg :foreground orange)
+(centaur-tabs-active-bar-face :background blue :background bg)
+(centaur-tabs-modified-marker-selected :foreground yellow :background bg)
+(centaur-tabs-modified-marker-unselected :foreground orange :background bg)
+(centaur-tabs-close-selected :inherit 'centaur-tabs-selected :foreground fg :background bg)
+(centaur-tabs-close-unselected :inherit 'centaur-tabs-unselected :foreground base5 :background bg)
+(centaur-tabs-close-mouse-face :foreground red :background bg)
+(centaur-tabs-name-mouse-face :foreground blue :bold t :background bg)
+(centaur-tabs-group-separator :foreground base2 :background bg)
+(centaur-tabs-group-separator-face :foreground base2 :background bg)
+(centaur-tabs-active-group-marker-face :foreground blue :weight 'bold :background bg)
+
+;; Standard header line treatment
+(header-line :background bg :foreground fg)
+  )
+)
+
+(provide 'doom-kanagawa-theme)
+;;; doom-kanagawa-theme.el ends here
+
+
+(provide 'doom-kanagawa-theme)
+;;; doom-kanagawa-theme.el ends here

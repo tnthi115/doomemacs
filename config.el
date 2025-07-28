@@ -32,8 +32,26 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-tokyo-night)
+;; (setq doom-theme 'doom-tokyo-night)
 ;; (setq doom-theme 'kanagawa-dragon)
+
+;; Add custom theme directory - MUST come before setting doom-theme
+(add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
+(add-to-list 'load-path "~/.config/doom/themes/")
+
+;; Set the default theme to your custom dark Kanagawa
+(setq doom-theme 'doom-kanagawa)
+
+;; Force-load the theme to ensure it's applied
+(load-theme 'doom-kanagawa t)
+
+;; Convenient function to reload the theme (useful for theme development)
+(defun reload-theme ()
+  "Reload the current theme."
+  (interactive)
+  (let ((current-theme doom-theme))
+    (disable-theme current-theme)
+    (load-theme current-theme t)))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -51,6 +69,14 @@
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
 (custom-set-faces!
+  '(default :background "#1F1F28" :foreground "#DCD7BA")
+  '(solaire-default-face :background "#1F1F28")
+  '(solaire-mode-line-face :background "#1F1F28")
+  '(solaire-mode-line-inactive-face :background "#1F1F28")
+  '(header-line :background "#1F1F28")
+  '(org-block :background "#1F1F28")
+  '(org-block-begin-line :background "#1F1F28")
+  '(org-block-end-line :background "#1F1F28")
   '(font-lock-comment-face :slant italic))
 
 ;; TRANSPARENT BACKGROUND
@@ -64,7 +90,7 @@
 
 ;; MARKDOWN
 (custom-set-faces
- '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "CaskaydiaCove Nerd Font"))))
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "JetBrainsMono Nerd Font"))))
  '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.7))))
  '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.6))))
  '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.5))))
@@ -80,14 +106,21 @@
 
 ;; SETTINGS
 (setq confirm-kill-emacs nil)
-(setq scroll-margin 8)
+;; (setq scroll-margin 8)
 ;; (add-hook! 'doom-init-ui-hook (fringe-mode 8))
 ;; (add-hook! 'doom-init-ui-hook (global-git-gutter-mode))
 
 ;; KEYBINDINGS
 (after! evil
   (map! :desc "Switch to previous tab." :n "L" #'+tabs:next-or-goto)
-  (map! :desc "Switch to next tab." :n "H" #'+tabs:previous-or-goto))
+  (map! :desc "Switch to next tab." :n "H" #'+tabs:previous-or-goto)
+  (map! "C-h" #'evil-window-left)
+  (map! "C-j" #'evil-window-down)
+  (map! "C-k" #'evil-window-up)
+  (map! "C-l" #'evil-window-right)
+  (map! :desc "Toggle vterm popup" :n "C-/" #'+vterm/toggle)
+  (map! :desc "Toggle treemacs" :leader "e" #'treemacs)
+  )
 ;; (after! evil
 ;;   (evil-define-key* 'normal 'global
 ;;     (kbd "C-h") #'+tabs:next-or-goto
@@ -95,15 +128,8 @@
 ;; (evil-define-key ('normal 'global)
 ;;   (kbd "L") #'+tabs:next-or-goto
 ;;   (kbd "H") #'+tabs:previous-or-goto)
-(map! :leader
-      :desc "Toggle treemacs" "e" #'treemacs)
 ;; (map! :leader
 ;;       :desc "Toggle neotree" "e" #'neotree)
-(map! :desc "Toggle vterm popup" :n "C-/" #'+vterm/toggle)
-(map! "C-h" #'evil-window-left)
-(map! "C-j" #'evil-window-down)
-(map! "C-k" #'evil-window-up)
-(map! "C-l" #'evil-window-right)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -163,25 +189,37 @@
 ;; (lsp-headerline-breadcrumb-mode)
 
 (after! which-key
-  (setq which-key-idle-delay 0.01))
+  (setq which-key-idle-delay 0.2))
 
 ;; centaur tabs
 
 
 (after! centaur-tabs
-  (centaur-tabs-group-by-projectile-project) ;;for https://github.com/ema2159/centaur-tabs/issues/181#issuecomment-1075806796
-  (centaur-tabs-headline-match)
-  (setq centaur-tabs-style "wave"
-        centaur-tabs-height 24
+  ;;   (centaur-tabs-group-by-projectile-project) ;;for https://github.com/ema2159/centaur-tabs/issues/181#issuecomment-1075806796
+  ;;   (centaur-tabs-headline-match)
+  ;;   (setq centaur-tabs-style "bar"
+  ;;         centaur-tabs-height 24
+  ;;         centaur-tabs-set-icons t
+  ;;         centaur-tabs-gray-out-icons #'buffer
+  ;;         ;; centaur-tabs-set-bar #'under
+  ;;         x-underline-at-descent-line t
+  ;;         centaur-tabs-close-button "×"
+  ;;         centaur-tabs-modified-marker "•"
+  ;;         centaur-tabs-show-new-tab-button nil
+  ;;         ;; centaur-tabs-show-count t
+  ;;         centaur-tabs-show-navigation-buttons nil)
+  (setq centaur-tabs-set-bar 'under
         centaur-tabs-set-icons t
-        centaur-tabs-gray-out-icons #'buffer
-        ;; centaur-tabs-set-bar #'under
-        x-underline-at-descent-line t
-        centaur-tabs-close-button "×"
+        centaur-tabs-gray-out-icons 'buffer
+        centaur-tabs-height 32
+        centaur-tabs-set-modified-marker t
+        centaur-tabs-style "bar"
+        x-underline-at-descent-line nil
         centaur-tabs-modified-marker "•"
+        centaur-tabs-close-button ""  ;; Empty string for cleaner look
         centaur-tabs-show-new-tab-button nil
-        ;; centaur-tabs-show-count t
-        centaur-tabs-show-navigation-buttons t)
+        centaur-tabs-show-count nil
+        centaur-tabs-show-navigation-buttons nil)
   ;; (defun centaur-tabs-hide-tab (x)
   ;;   "Do no to show buffer X in tabs."
   ;;   (let ((name (format "%s" x)))
@@ -247,12 +285,33 @@
          :desc "Previous tab group" "<" #'centaur-tabs-backward-group)))
 
 (defun tdr/fix-centaur-tabs ()
+  "Reset centaur-tabs to have clean Nord-like appearance."
   (centaur-tabs-mode -1)
   (centaur-tabs-mode)
-  (centaur-tabs-headline-match))
+  (centaur-tabs-headline-match)
+  
+  ;; Remove any box styling that might be causing issues
+  (dolist (face '(centaur-tabs-selected
+                  centaur-tabs-selected-modified
+                  centaur-tabs-unselected
+                  centaur-tabs-unselected-modified))
+    (set-face-attribute face nil :box nil))
+  
+  ;; Ensure underline works properly with Kanagawa blue color
+  (set-face-attribute 'centaur-tabs-active-bar-face nil
+                      :background "#7E9CD8")
+  
+  ;; Set font without using centaur-tabs-change-fonts to avoid "Invalid face foundry" error
+  (when (face-font 'default)
+    (set-face-attribute 'centaur-tabs-default nil :family (face-attribute 'default :family))
+    (set-face-attribute 'centaur-tabs-selected nil :family (face-attribute 'default :family))
+    (set-face-attribute 'centaur-tabs-unselected nil :family (face-attribute 'default :family))))
+;;   (centaur-tabs-mode)
+;;   (centaur-tabs-headline-match))
 (if (daemonp)
     (add-hook 'after-make-frame-functions
               (lambda (frame)
                 (with-selected-frame frame
-                  (tdr/fix-centaur-tabs)))
-              (tdr/fix-centaur-tabs)))
+                  (tdr/fix-centaur-tabs))))
+  ;; Run immediately if not in daemon mode
+  (tdr/fix-centaur-tabs))
