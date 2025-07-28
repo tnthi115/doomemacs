@@ -52,13 +52,13 @@
 ;;   :recipe (:host github :repo "flycheck/flycheck-inline"))
 
 ;; Fix this issue https://github.com/doomemacs/doomemacs/issues/8421
-(package! ghub
-  :pin "12d1472579075135327278b843e23f055f659b3c")
+;; (package! ghub
+;;   :pin "12d1472579075135327278b843e23f055f659b3c")
 
-(package! glab)
-(package! gtea)
-(package! gogs)
-(package! buck)
+;; (package! glab)
+;; (package! gtea)
+;; (package! gogs)
+;; (package! buck)
 
 ;; (straight-use-package
 ;;  '(perltidy
@@ -75,9 +75,9 @@
 
 
 
-(package! kanagawa-themes)
-(setq kanagawa-themes-custom-colors '((bg_gutter "none")))
-(load-theme 'kanagawa-wave t)
+;; (package! kanagawa-themes)
+;; (setq kanagawa-themes-custom-colors '((bg_gutter "none")))
+;; (load-theme 'kanagawa-wave t)
 
 ;;; package: --- A theme inspired by the colors of the famous painting by Katsushika Hokusa
 
