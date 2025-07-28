@@ -41,51 +41,158 @@
 ;;
 ;;; Theme definition
 
+(defconst kanagawa-wave-palette
+  '((sumiInk0      . "#16161D")
+    (sumiInk1      . "#181820")
+    (sumiInk2      . "#1a1a22")
+    (sumiInk3      . "#1F1F28")
+    (sumiInk4      . "#2A2A37")
+    (sumiInk5      . "#363646")
+    (sumiInk6      . "#54546D")
+    (waveBlue1     . "#223249")
+    (waveBlue2     . "#2D4F67")
+    (winterGreen   . "#2B3328")
+    (winterYellow  . "#49443C")
+    (winterRed     . "#43242B")
+    (winterBlue    . "#252535")
+    (autumnGreen   . "#76946A")
+    (autumnRed     . "#C34043")
+    (autumnYellow  . "#DCA561")
+    (samuraiRed    . "#E82424")
+    (roninYellow   . "#FF9E3B")
+    (waveAqua1     . "#6A9589")
+    (dragonBlue    . "#658594")
+    (oldWhite      . "#C8C093")
+    (fujiWhite     . "#DCD7BA")
+    (fujiGray      . "#727169")
+    (oniViolet     . "#957FB8")
+    (oniViolet2    . "#b8b4d0")
+    (crystalBlue   . "#7E9CD8")
+    (springViolet1 . "#938AA9")
+    (springViolet2 . "#9CABCA")
+    (springBlue    . "#7FB4CA")
+    (lightBlue     . "#A3D4D5")
+    (waveAqua2     . "#7AA89F")
+    (springGreen   . "#98BB6C")
+    (boatYellow1   . "#938056")
+    (boatYellow2   . "#C0A36E")
+    (carpYellow    . "#E6C384")
+    (sakuraPink    . "#D27E99")
+    (waveRed       . "#E46876")
+    (peachRed      . "#FF5D62")
+    (surimiOrange  . "#FFA066")
+    (katanaGray    . "#717C7C")
+    (dragonBlack0  . "#0d0c0c")
+    (dragonBlack1  . "#12120f")
+    (dragonBlack2  . "#1D1C19")
+    (dragonBlack3  . "#181616")
+    (dragonBlack4  . "#282727")
+    (dragonBlack5  . "#393836")
+    (dragonBlack6  . "#625e5a")
+    (dragonWhite   . "#c5c9c5")
+    (dragonGreen   . "#87a987")
+    (dragonGreen2  . "#8a9a7b")
+    (dragonPink    . "a292a3")
+    (dragonOrange  . "#b6927b")
+    (dragonOrange2 . "#b98d7b")
+    (dragonGray    . "#a6a69c")
+    (dragonGray2   . "#9e9b93")
+    (dragonGray3   . "#7a8382")
+    (dragonBlue2   . "#8ba4b0")
+    (dragonViolet  . "#8992a7")
+    (dragonRed     . "#c4746e")
+    (dragonAqua    . "#8ea4a2")
+    (dragonAsh     . "#737c73")
+    (dragonTeal    . "#949fb5")
+    (dragonYellow  . "#c4b28a")
+    ;; Lotus colors (for completeness)
+    (lotusInk1     . "#545464")
+    (lotusInk2     . "#43436c")
+    (lotusGray     . "#dcd7ba")
+    (lotusGray2    . "#716e61")
+    (lotusGray3    . "#8a8980")
+    (lotusWhite0   . "#d5cea3")
+    (lotusWhite1   . "#dcd5ac")
+    (lotusWhite2   . "#e5ddb0")
+    (lotusWhite3   . "#f2ecbc")
+    (lotusWhite4   . "#e7dba0")
+    (lotusWhite5   . "#e4d794")
+    (lotusViolet1  . "#a09cac")
+    (lotusViolet2  . "#766b90")
+    (lotusViolet3  . "#c9cbd1")
+    (lotusViolet4  . "#624c83")
+    (lotusBlue1    . "#c7d7e0")
+    (lotusBlue2    . "#b5cbd2")
+    (lotusBlue3    . "#9fb5c9")
+    (lotusBlue4    . "#4d699b")
+    (lotusBlue5    . "#5d57a3")
+    (lotusGreen    . "#6f894e")
+    (lotusGreen2   . "#6e915f")
+    (lotusGreen3   . "#b7d0ae")
+    (lotusPink     . "#b35b79")
+    (lotusOrange   . "#cc6d00")
+    (lotusOrange2  . "#e98a00")
+    (lotusYellow   . "#77713f")
+    (lotusYellow2  . "#836f4a")
+    (lotusYellow3  . "#de9800")
+    (lotusYellow4  . "#f9d791")
+    (lotusRed      . "#c84053")
+    (lotusRed2     . "#d7474b")
+    (lotusRed3     . "#e82424")
+    (lotusRed4     . "#d9a594")
+    (lotusAqua     . "#597b75")
+    (lotusAqua2    . "#5e857a")
+    (lotusTeal1    . "#4e8ca2")
+    (lotusTeal2    . "#6693bf")
+    (lotusTeal3    . "#5a7785")
+    (lotusCyan     . "#d7e3d8"))
+  "Kanagawa Wave color palette for Emacs.")
+
 (def-doom-theme doom-kanagawa
   "A dark theme inspired by Kanagawa.nvim, using the wave palette and background."
 
   ;; Palette: Latest Kanagawa.nvim "wave" colors
   (
-   (bg         '("#1F1F28" nil nil))       ;; sumiInk3
-   (bg-alt     '("#16161D" nil nil))       ;; sumiInk0
-   (base0      '("#1F1F28" nil nil))       ;; sumiInk3
-   (base1      '("#2A2A37" nil nil))       ;; sumiInk4
-   (base2      '("#363646" nil nil))       ;; sumiInk5
-   (base3      '("#54546D" nil nil))       ;; sumiInk6
-   (base4      '("#625e5a" nil nil))       ;; dragonBlack6
-   (base5      '("#727169" nil nil))       ;; fujiGray
-   (base6      '("#C8C093" nil nil))       ;; oldWhite
-   (base7      '("#DCD7BA" nil nil))       ;; fujiWhite
-   (base8      '("#DCD7BA" nil nil))       ;; fujiWhite
-   (fg-alt     '("#C8C093" nil nil))       ;; oldWhite
-   (fg         '("#DCD7BA" nil nil))       ;; fujiWhite
+   (bg         (list (alist-get 'sumiInk3 kanagawa-wave-palette) nil nil))       ;; sumiInk3
+   (bg-alt     (list (alist-get 'sumiInk0 kanagawa-wave-palette) nil nil))       ;; sumiInk0
+   (base0      (list (alist-get 'sumiInk3 kanagawa-wave-palette) nil nil))       ;; sumiInk3
+   (base1      (list (alist-get 'sumiInk4 kanagawa-wave-palette) nil nil))       ;; sumiInk4
+   (base2      (list (alist-get 'sumiInk5 kanagawa-wave-palette) nil nil))       ;; sumiInk5
+   (base3      (list (alist-get 'sumiInk6 kanagawa-wave-palette) nil nil))       ;; sumiInk6
+   (base4      (list (alist-get 'dragonBlack6 kanagawa-wave-palette) nil nil))   ;; dragonBlack6
+   (base5      (list (alist-get 'fujiGray kanagawa-wave-palette) nil nil))       ;; fujiGray
+   (base6      (list (alist-get 'oldWhite kanagawa-wave-palette) nil nil))       ;; oldWhite
+   (base7      (list (alist-get 'fujiWhite kanagawa-wave-palette) nil nil))      ;; fujiWhite
+   (base8      (list (alist-get 'fujiWhite kanagawa-wave-palette) nil nil))      ;; fujiWhite
+   (fg-alt     (list (alist-get 'oldWhite kanagawa-wave-palette) nil nil))       ;; oldWhite
+   (fg         (list (alist-get 'fujiWhite kanagawa-wave-palette) nil nil))      ;; fujiWhite
    (grey       base5)
-   (red        '("#E46876" nil nil))       ;; waveRed
-   (orange     '("#FFA066" nil nil))       ;; surimiOrange
-   (green      '("#98BB6C" nil nil))       ;; springGreen
-   (teal       '("#7AA89F" nil nil))       ;; waveAqua2
-   (yellow     '("#E6C384" nil nil))       ;; carpYellow
-   (blue       '("#7E9CD8" nil nil))       ;; crystalBlue
-   (dark-blue  '("#223249" nil nil))       ;; waveBlue1
-   (magenta    '("#957FB8" nil nil))       ;; oniViolet
-   (violet     '("#938AA9" nil nil))       ;; springViolet1
-   (cyan       '("#6A9589" nil nil))       ;; waveAqua1
-   (dark-cyan  '("#7FB4CA" nil nil))       ;; springBlue
-   (pink       '("#D27E99" nil nil))       ;; sakuraPink
-   (bg-popup   '(nil nil nil))              ;; transparent popup (bg_gutter = "none")
-   (bg-search  '("#2D4F67" nil nil))       ;; waveBlue2
-   (bg-diff-add    '("#2B3328" nil nil))   ;; winterGreen
-   (bg-diff-change '("#49443C" nil nil))   ;; winterYellow
-   (bg-diff-delete '("#43242B" nil nil))   ;; winterRed
-   (bg-diff-line   '("#252535" nil nil))   ;; winterBlue
-   (bg-tab-selected '("#2A2A37" nil nil))  ;; sumiInk4
-   (git-add    '("#76946A" nil nil))       ;; autumnGreen
-   (git-del    '("#C34043" nil nil))       ;; autumnRed
-   (git-change '("#DCA561" nil nil))       ;; autumnYellow
-   (diag-error '("#E82424" nil nil))       ;; samuraiRed
-   (diag-warning '("#FF9E3B" nil nil))     ;; roninYellow
-   (diag-info  '("#658594" nil nil))       ;; dragonBlue
-   (diag-hint  '("#6A9589" nil nil))       ;; waveAqua1
+   (red        (list (alist-get 'waveRed kanagawa-wave-palette) nil nil))        ;; waveRed
+   (orange     (list (alist-get 'surimiOrange kanagawa-wave-palette) nil nil))   ;; surimiOrange
+   (green      (list (alist-get 'springGreen kanagawa-wave-palette) nil nil))    ;; springGreen
+   (teal       (list (alist-get 'waveAqua2 kanagawa-wave-palette) nil nil))      ;; waveAqua2
+   (yellow     (list (alist-get 'carpYellow kanagawa-wave-palette) nil nil))     ;; carpYellow
+   (blue       (list (alist-get 'crystalBlue kanagawa-wave-palette) nil nil))    ;; crystalBlue
+   (dark-blue  (list (alist-get 'waveBlue1 kanagawa-wave-palette) nil nil))      ;; waveBlue1
+   (magenta    (list (alist-get 'oniViolet kanagawa-wave-palette) nil nil))      ;; oniViolet
+   (violet     (list (alist-get 'springViolet1 kanagawa-wave-palette) nil nil))  ;; springViolet1
+   (cyan       (list (alist-get 'waveAqua1 kanagawa-wave-palette) nil nil))      ;; waveAqua1
+   (dark-cyan  (list (alist-get 'springBlue kanagawa-wave-palette) nil nil))     ;; springBlue
+   (pink       (list (alist-get 'sakuraPink kanagawa-wave-palette) nil nil))     ;; sakuraPink
+   (bg-popup   (list nil nil nil))                                               ;; transparent popup (bg_gutter = "none")
+   (bg-search  (list (alist-get 'waveBlue2 kanagawa-wave-palette) nil nil))      ;; waveBlue2
+   (bg-diff-add    (list (alist-get 'winterGreen kanagawa-wave-palette) nil nil))   ;; winterGreen
+   (bg-diff-change (list (alist-get 'winterYellow kanagawa-wave-palette) nil nil))  ;; winterYellow
+   (bg-diff-delete (list (alist-get 'winterRed kanagawa-wave-palette) nil nil))     ;; winterRed
+   (bg-diff-line   (list (alist-get 'winterBlue kanagawa-wave-palette) nil nil))    ;; winterBlue
+   (bg-tab-selected (list (alist-get 'sumiInk4 kanagawa-wave-palette) nil nil))     ;; sumiInk4
+   (git-add    (list (alist-get 'autumnGreen kanagawa-wave-palette) nil nil))       ;; autumnGreen
+   (git-del    (list (alist-get 'autumnRed kanagawa-wave-palette) nil nil))         ;; autumnRed
+   (git-change (list (alist-get 'autumnYellow kanagawa-wave-palette) nil nil))      ;; autumnYellow
+   (diag-error (list (alist-get 'samuraiRed kanagawa-wave-palette) nil nil))        ;; samuraiRed
+   (diag-warning (list (alist-get 'roninYellow kanagawa-wave-palette) nil nil))     ;; roninYellow
+   (diag-info  (list (alist-get 'dragonBlue kanagawa-wave-palette) nil nil))        ;; dragonBlue
+   (diag-hint  (list (alist-get 'waveAqua1 kanagawa-wave-palette) nil nil))         ;; waveAqua1
    (highlight      blue)
    (vertical-bar   (doom-lighten bg 0.05))
    (selection      dark-blue)
@@ -108,7 +215,7 @@
    (vc-modified    git-change)
    (vc-added       git-add)
    (vc-deleted     git-del)
-   (hidden     '("#181616" "black" "black"))
+   (hidden     (list (alist-get 'dragonBlack3 kanagawa-wave-palette) "black" "black"))
    (-modeline-bright doom-kanagawa-brighter-modeline)
    (-modeline-pad
     (when doom-kanagawa-padded-modeline
@@ -142,8 +249,8 @@
 
 ;; Line numbers and cursor line
 ((line-number &override) :foreground base5 :background bg)
-((line-number-current-line &override) :foreground blue :background bg :weight 'bold)
-(hl-line :background bg)
+((line-number-current-line &override) :foreground blue :background base1 :weight 'bold)
+(hl-line :background base1)
 
 ;; Font lock
 (font-lock-comment-face :foreground comments :slant 'italic :background (if doom-kanagawa-comment-bg (doom-lighten bg 0.05) bg))
@@ -502,10 +609,6 @@
 (header-line :background bg :foreground fg)
   )
 )
-
-(provide 'doom-kanagawa-theme)
-;;; doom-kanagawa-theme.el ends here
-
 
 (provide 'doom-kanagawa-theme)
 ;;; doom-kanagawa-theme.el ends here
