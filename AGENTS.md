@@ -84,6 +84,8 @@ This repository contains a Doom Emacs configuration. Please follow these guideli
 - [Emacs Lisp Style Guide](https://github.com/bbatsov/emacs-lisp-style-guide)
 - [Joshua Blais' Doom Emacs Config](https://github.com/jblais493/nixos-config/tree/master/dotfiles/doom)
 - [Derek Taylor's Doom Emacs Config](https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/doom)
+- [tnthi115/tvim (Personal Neovim Config)](https://github.com/tnthi115/tvim)
+- [LazyVim (Neovim Starter & Reference)](https://www.lazyvim.org/)
 
 ---
 
@@ -94,5 +96,6 @@ This repository contains a Doom Emacs configuration. Please follow these guideli
 - Lint your code before committing.
 - Follow the style and best practices above.
 - Reference the official Doom Emacs documentation for advanced configuration.
+- When implementing features or ensuring feature parity with Neovim, always reference [tnthi115/tvim (Personal Neovim Config)](https://github.com/tnthi115/tvim) and [LazyVim (Neovim Starter & Reference)](https://www.lazyvim.org/) for design, workflow, and configuration inspiration.
 
 ---
