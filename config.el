@@ -106,6 +106,15 @@
 
 ;; SETTINGS
 (setq confirm-kill-emacs nil)
+(setq persp-auto-resume-time -1) ; disables confirmation when restoring sessions, including for leader q L
+
+;; Suppress confirmation prompt when restoring last session
+(advice-add 'doom/quickload-session :around
+  (lambda (orig-fn &rest args)
+    (cl-letf (((symbol-function 'yes-or-no-p) (lambda (&rest _) t))
+              ((symbol-function 'y-or-n-p) (lambda (&rest _) t)))
+      (apply orig-fn args))))
+
 ;; (setq scroll-margin 8)
 ;; (add-hook! 'doom-init-ui-hook (fringe-mode 8))
 ;; (add-hook! 'doom-init-ui-hook (global-git-gutter-mode))
