@@ -82,6 +82,8 @@ This repository contains a Doom Emacs configuration. Please follow these guideli
 - [Doom Emacs Style Guide](https://docs.doomemacs.org/latest/contributing/style-guide/)
 - [Doom Emacs Developer Manual](https://docs.doomemacs.org/latest/contributing/development/)
 - [Emacs Lisp Style Guide](https://github.com/bbatsov/emacs-lisp-style-guide)
+- [Joshua Blais' Doom Emacs Config](https://github.com/jblais493/nixos-config/tree/master/dotfiles/doom)
+- [Derek Taylor's Doom Emacs Config](https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/doom)
 
 ---
 
