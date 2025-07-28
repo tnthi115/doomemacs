@@ -95,6 +95,7 @@ Always prefer user-specific configuration first, then fall back to upstream or g
 - [Doom Emacs Documentation](https://docs.doomemacs.org/)
 - [Doom Emacs Style Guide](https://docs.doomemacs.org/latest/contributing/style-guide/)
 - [Doom Emacs Developer Manual](https://docs.doomemacs.org/latest/contributing/development/)
+- [Doom Emacs Themes (Canonical highlight/select face reference)](https://github.com/doomemacs/themes)
 - [Emacs Lisp Style Guide](https://github.com/bbatsov/emacs-lisp-style-guide)
 - [Joshua Blais' Doom Emacs Config](https://github.com/jblais493/nixos-config/tree/master/dotfiles/doom)
 - [Derek Taylor's Doom Emacs Config](https://gitlab.com/dwt1/dotfiles/-/tree/master/.config/doom)
@@ -110,6 +111,7 @@ Always prefer user-specific configuration first, then fall back to upstream or g
 - Lint your code before committing.
 - Follow the style and best practices above.
 - Reference the official Doom Emacs documentation for advanced configuration.
+- For any theme work, always reference [Doom Emacs Themes](https://github.com/doomemacs/themes) for canonical highlight/select face definitions and palette usage. Match highlight/select backgrounds to the official themes for consistency.
 - When implementing features or ensuring feature parity with Neovim, always reference [tnthi115/tvim (Personal Neovim Config)](https://github.com/tnthi115/tvim) and [LazyVim (Neovim Starter & Reference)](https://www.lazyvim.org/) for design, workflow, and configuration inspiration.
 
 ---

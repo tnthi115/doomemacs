@@ -71,13 +71,13 @@
 (custom-set-faces!
   '(default :background "#1F1F28" :foreground "#DCD7BA")
   '(solaire-default-face :background "#1F1F28")
-  '(solaire-mode-line-face :background "#1F1F28")
-  '(solaire-mode-line-inactive-face :background "#1F1F28")
-  '(header-line :background "#1F1F28")
+'(solaire-mode-line-face :background "#2A2A37")
+   '(solaire-mode-line-inactive-face :background "#2A2A37")  '(header-line :background "#1F1F28")
   '(org-block :background "#1F1F28")
   '(org-block-begin-line :background "#1F1F28")
   '(org-block-end-line :background "#1F1F28")
-  '(font-lock-comment-face :slant italic))
+  '(font-lock-comment-face :slant italic)
+  '(region :background "#223249"))
 
 ;; TRANSPARENT BACKGROUND
 ;; (only when window is focused)
