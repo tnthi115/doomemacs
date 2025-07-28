@@ -120,7 +120,46 @@
   (map! "C-l" #'evil-window-right)
   (map! :desc "Toggle vterm popup" :n "C-/" #'+vterm/toggle)
   (map! :desc "Toggle treemacs" :leader "e" #'treemacs)
-  )
+  (map! :leader
+        :prefix "g"
+        :desc "Lazygit" "g" #'+open-lazygit-vterm
+        :desc "Lazygit (cwd)" "G" #'+open-lazygit-vterm-cwd
+        :desc "Magit status" "m" #'magit-status
+        :desc "Magit status here" "M" #'magit-status-here))
+
+(defun +open-lazygit-vterm ()
+  "Open lazygit in an ephemeral vterm buffer that closes when lazygit exits."
+  (interactive)
+  (let* ((bufname "*lazygit-vterm*")
+         (buf (vterm bufname)))
+    (with-current-buffer buf
+      (vterm-send-string "lazygit; exit")
+      (vterm-send-return))))
+
+(defun +open-lazygit-vterm-cwd ()
+  "Open lazygit in a vterm popup in the current buffer's directory, using /bin/sh for speed."
+  (interactive)
+  (let* ((bufname "*lazygit-vterm-cwd*")
+         (default-directory (or (and (boundp 'default-directory) default-directory)
+                                (when (fboundp 'projectile-project-root) (projectile-project-root))
+                                "~/"))
+         (vterm-shell "/bin/sh")
+         (buf (vterm bufname)))
+    (with-current-buffer buf
+      (vterm-send-string "lazygit; exit")
+      (vterm-send-return))
+    (when (fboundp '+popup-buffer)
+      (+popup-buffer buf))))
+
+;; --- vterm border fix ---
+(add-hook 'vterm-mode-hook
+          (lambda ()
+            (setq-local font-lock-defaults '(nil t))
+            (setq-local line-spacing 0)
+            (set-fontset-font t 'unicode "JetBrainsMono Nerd Font" nil 'prepend)
+            (set-face-attribute 'default (selected-frame) :family "JetBrainsMono Nerd Font")))
+;; --- end vterm border fix ---
+
 ;; (after! evil
 ;;   (evil-define-key* 'normal 'global
 ;;     (kbd "C-h") #'+tabs:next-or-goto
