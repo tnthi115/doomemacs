@@ -83,3 +83,5 @@
   :recipe (:host github
            :repo "mattsawyer77/kanagawa-theme"
            :branch "main"))
+
+;; (package! eat)
