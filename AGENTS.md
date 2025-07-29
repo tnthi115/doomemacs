@@ -115,3 +115,25 @@ Always prefer user-specific configuration first, then fall back to upstream or g
 - When implementing features or ensuring feature parity with Neovim, always reference [tnthi115/tvim (Personal Neovim Config)](https://github.com/tnthi115/tvim) and [LazyVim (Neovim Starter & Reference)](https://www.lazyvim.org/) for design, workflow, and configuration inspiration.
 
 ---
+
+**Agent Completion Checklist (MANDATORY):**
+
+Before finishing any coding task, you MUST:
+
+1. **Check for Emacs Lisp syntax errors**  
+   - Run `doom build` and ensure there are no syntax errors or byte-compilation failures.
+   - If editing interactively, use `M-x check-parens` and `M-x emacs-lisp-byte-compile-and-load` on the file.
+
+2. **Check for LSP and lint errors**  
+   - Run `doom doctor` and resolve any reported issues.
+   - Optionally, use `M-x checkdoc` or `M-x package-lint-current-buffer` for additional linting.
+
+3. **Test configuration loads without errors**  
+   - Reload configuration (`M-x doom/reload`) or restart Emacs and check `*Messages*` for errors.
+
+4. **Never leave code in a broken or error state**  
+   - If any errors are found, fix them before marking the task as complete.
+
+**Never mark a task as finished until all syntax, lint, and LSP errors are resolved.**
+
+---
