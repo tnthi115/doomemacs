@@ -155,7 +155,7 @@
   ;; Palette: Latest Kanagawa.nvim "wave" colors
   (
    ;; (bg         (list (alist-get 'sumiInk3 kanagawa-wave-palette) nil nil))       ;; sumiInk3
-   (bg         (list (alist-get 'sumiInk3 kanagawa-wave-palette) nil nil))       ;; sumiInk3
+   (bg         (list (alist-get 'dragonBlack3 kanagawa-wave-palette) nil nil))       ;; dragonBlack3 (Kanagawa Dragon background)
    (bg-alt     (list (alist-get 'sumiInk0 kanagawa-wave-palette) nil nil))       ;; sumiInk0
    (base0      (list (alist-get 'sumiInk3 kanagawa-wave-palette) nil nil))       ;; sumiInk3
    (base1      (list (alist-get 'sumiInk4 kanagawa-wave-palette) nil nil))       ;; sumiInk4
@@ -622,16 +622,15 @@
   )
 
 (custom-set-faces!
-  `(default :background ,(alist-get 'sumiInk3 kanagawa-wave-palette) :foreground ,(alist-get 'fujiWhite kanagawa-wave-palette))
-  `(solaire-default-face :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
+  `(default :background ,(alist-get 'dragonBlack3 kanagawa-wave-palette) :foreground ,(alist-get 'fujiWhite kanagawa-wave-palette))
+  `(solaire-default-face :background ,(alist-get 'dragonBlack3 kanagawa-wave-palette))
   `(solaire-mode-line-face :background ,(alist-get 'sumiInk4 kanagawa-wave-palette))
   `(solaire-mode-line-inactive-face :background ,(alist-get 'sumiInk4 kanagawa-wave-palette))
-  `(header-line :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
-  `(org-block :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
-  `(org-block-begin-line :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
-  `(org-block-end-line :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
+  `(header-line :background ,(alist-get 'dragonBlack3 kanagawa-wave-palette))
+  `(org-block :background ,(alist-get 'dragonBlack3 kanagawa-wave-palette))
+  `(org-block-begin-line :background ,(alist-get 'dragonBlack3 kanagawa-wave-palette))
+  `(org-block-end-line :background ,(alist-get 'dragonBlack3 kanagawa-wave-palette))
   '(font-lock-comment-face :slant italic)
-  `(region :background ,(alist-get 'waveBlue1 kanagawa-wave-palette)))
-
+   `(region :background ,(alist-get 'waveBlue1 kanagawa-wave-palette))) ; (keep region as is, matches Kanagawa Dragon visual selection)
 (provide 'doom-kanagawa-wave-theme)
 ;;; doom-kanagawa-theme.el ends here

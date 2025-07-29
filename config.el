@@ -345,16 +345,16 @@
   (centaur-tabs-mode)
   (centaur-tabs-headline-match)
   
-  ;; Remove any box styling that might be causing issues
+  ;; Remove any box styling and underline from selected tabs
   (dolist (face '(centaur-tabs-selected
                   centaur-tabs-selected-modified
                   centaur-tabs-unselected
                   centaur-tabs-unselected-modified))
-    (set-face-attribute face nil :box nil))
+    (set-face-attribute face nil :box nil :underline nil))
   
-  ;; Ensure underline works properly with Kanagawa blue color
+  ;; Ensure underline works properly with Kanagawa blue color (disable if you don't want underline)
   (set-face-attribute 'centaur-tabs-active-bar-face nil
-                      :background "#7E9CD8")
+                      :background nil :underline nil)
   
   ;; Set font without using centaur-tabs-change-fonts to avoid "Invalid face foundry" error
   (when (face-font 'default)
