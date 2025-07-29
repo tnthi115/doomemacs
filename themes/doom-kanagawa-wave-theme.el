@@ -149,7 +149,7 @@
 
   "Kanagawa Wave color palette for Emacs.")
 
-(def-doom-theme doom-kanagawa
+(def-doom-theme doom-kanagawa-wave
     "A dark theme inspired by Kanagawa.nvim, using the wave palette and background."
 
   ;; Palette: Latest Kanagawa.nvim "wave" colors
@@ -621,5 +621,17 @@
    )
   )
 
-(provide 'doom-kanagawa-theme)
+(custom-set-faces!
+  `(default :background ,(alist-get 'sumiInk3 kanagawa-wave-palette) :foreground ,(alist-get 'fujiWhite kanagawa-wave-palette))
+  `(solaire-default-face :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
+  `(solaire-mode-line-face :background ,(alist-get 'sumiInk4 kanagawa-wave-palette))
+  `(solaire-mode-line-inactive-face :background ,(alist-get 'sumiInk4 kanagawa-wave-palette))
+  `(header-line :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
+  `(org-block :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
+  `(org-block-begin-line :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
+  `(org-block-end-line :background ,(alist-get 'sumiInk3 kanagawa-wave-palette))
+  '(font-lock-comment-face :slant italic)
+  `(region :background ,(alist-get 'waveBlue1 kanagawa-wave-palette)))
+
+(provide 'doom-kanagawa-wave-theme)
 ;;; doom-kanagawa-theme.el ends here

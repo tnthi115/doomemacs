@@ -40,18 +40,12 @@
 (add-to-list 'load-path "~/.config/doom/themes/")
 
 ;; Set the default theme to your custom dark Kanagawa
-(setq doom-theme 'doom-kanagawa)
+;; (setq doom-theme 'kanagawa)
 
-;; Force-load the theme to ensure it's applied
-(load-theme 'doom-kanagawa t)
+(setq doom-theme 'doom-kanagawa-wave)
 
-;; Convenient function to reload the theme (useful for theme development)
-(defun reload-theme ()
-  "Reload the current theme."
-  (interactive)
-  (let ((current-theme doom-theme))
-    (disable-theme current-theme)
-    (load-theme current-theme t)))
+;; ;; Force-load the theme to ensure it's applied
+;; (load-theme 'doom-kanagawa-wave t)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -62,22 +56,23 @@
 (setq org-directory "~/Documents/org/")
 
 ;; FONTS
+(setq-default line-spacing 0.1)
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 13.2 :weight 'light)
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 13.2 :weight 'light)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
-(custom-set-faces!
-  '(default :background "#1F1F28" :foreground "#DCD7BA")
-  '(solaire-default-face :background "#1F1F28")
-'(solaire-mode-line-face :background "#2A2A37")
-   '(solaire-mode-line-inactive-face :background "#2A2A37")  '(header-line :background "#1F1F28")
-  '(org-block :background "#1F1F28")
-  '(org-block-begin-line :background "#1F1F28")
-  '(org-block-end-line :background "#1F1F28")
-  '(font-lock-comment-face :slant italic)
-  '(region :background "#223249"))
+;; (custom-set-faces!
+;;   '(default :background "#1F1F28" :foreground "#DCD7BA")
+;;   '(solaire-default-face :background "#1F1F28")
+;;   '(solaire-mode-line-face :background "#2A2A37")
+;;   '(solaire-mode-line-inactive-face :background "#2A2A37")  '(header-line :background "#1F1F28")
+;;   '(org-block :background "#1F1F28")
+;;   '(org-block-begin-line :background "#1F1F28")
+;;   '(org-block-end-line :background "#1F1F28")
+;;   '(font-lock-comment-face :slant italic)
+;;   '(region :background "#223249"))
 
 ;; TRANSPARENT BACKGROUND
 ;; (only when window is focused)
@@ -110,10 +105,10 @@
 
 ;; Suppress confirmation prompt when restoring last session
 (advice-add 'doom/quickload-session :around
-  (lambda (orig-fn &rest args)
-    (cl-letf (((symbol-function 'yes-or-no-p) (lambda (&rest _) t))
-              ((symbol-function 'y-or-n-p) (lambda (&rest _) t)))
-      (apply orig-fn args))))
+            (lambda (orig-fn &rest args)
+              (cl-letf (((symbol-function 'yes-or-no-p) (lambda (&rest _) t))
+                        ((symbol-function 'y-or-n-p) (lambda (&rest _) t)))
+                (apply orig-fn args))))
 
 ;; (setq scroll-margin 8)
 ;; (add-hook! 'doom-init-ui-hook (fringe-mode 8))
@@ -363,3 +358,6 @@
                   (tdr/fix-centaur-tabs))))
   ;; Run immediately if not in daemon mode
   (tdr/fix-centaur-tabs))
+
+;; vterm
+(setq vterm-always-compile-module t)
