@@ -1,5 +1,36 @@
 # AGENTS.md
 
+**🚨 AGENTIC MODEL MANDATE (READ FIRST) 🚨**
+
+- **Do NOT write or commit code that causes syntax errors.**
+- **You MUST test for syntax and LSP errors after every code change, not just at the end.**
+- **If you are unsure, do NOT mark the task as complete.**
+- **Never leave code in a broken or error state.**
+
+---
+
+## Agent Completion Checklist (MANDATORY)
+
+Before marking any coding task as complete, you MUST:
+
+1. **Check for Emacs Lisp syntax errors**
+   - Run `doom build` and ensure there are no syntax errors or byte-compilation failures.
+   - If editing interactively, use `M-x check-parens` and `M-x emacs-lisp-byte-compile-and-load` on the file.
+
+2. **Check for LSP and lint errors**
+   - Run `doom doctor` and resolve any reported issues.
+   - Optionally, use `M-x checkdoc` or `M-x package-lint-current-buffer` for additional linting.
+
+3. **Test configuration loads without errors**
+   - Reload configuration (`M-x doom/reload`) or restart Emacs and check `*Messages*` for errors.
+
+4. **Never leave code in a broken or error state**
+   - If any errors are found, fix them before marking the task as complete.
+
+**You MUST run these checks after every code change, not just at the end. Never mark a task as finished until all syntax, lint, and LSP errors are resolved.**
+
+---
+
 ## Agentic Coding Guide for Doom Emacs Configuration
 
 This repository contains a Doom Emacs configuration. Please follow these guidelines when making changes, running builds, or contributing code.
@@ -120,18 +151,18 @@ Always prefer user-specific configuration first, then fall back to upstream or g
 
 Before finishing any coding task, you MUST:
 
-1. **Check for Emacs Lisp syntax errors**  
+1. **Check for Emacs Lisp syntax errors**
    - Run `doom build` and ensure there are no syntax errors or byte-compilation failures.
    - If editing interactively, use `M-x check-parens` and `M-x emacs-lisp-byte-compile-and-load` on the file.
 
-2. **Check for LSP and lint errors**  
+2. **Check for LSP and lint errors**
    - Run `doom doctor` and resolve any reported issues.
    - Optionally, use `M-x checkdoc` or `M-x package-lint-current-buffer` for additional linting.
 
-3. **Test configuration loads without errors**  
+3. **Test configuration loads without errors**
    - Reload configuration (`M-x doom/reload`) or restart Emacs and check `*Messages*` for errors.
 
-4. **Never leave code in a broken or error state**  
+4. **Never leave code in a broken or error state**
    - If any errors are found, fix them before marking the task as complete.
 
 **Never mark a task as finished until all syntax, lint, and LSP errors are resolved.**
