@@ -64,8 +64,6 @@
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
 
-
-
 ;; --- LSP headerline breadcrumbs ---
 (after! lsp-mode
   (setq lsp-headerline-breadcrumb-enable t)
@@ -88,9 +86,13 @@
 
 ;; TRANSPARENT BACKGROUND
 ;; (only when window is focused)
-;; (set-frame-parameter nil 'alpha-background 69')
-;; (add-to-list 'default-frame-alist '(alpha-background . 69))
-;; (doom/set-frame-opacity 69)
+;; (set-frame-parameter nil 'alpha-background 85)
+;; (add-to-list 'default-frame-alist '(alpha-background . 85))
+;; (doom/set-frame-opacity 85)
+
+;; Use legacy alpha parameter for transparency (works in most Emacs builds)
+(set-frame-parameter (selected-frame) 'alpha '(94 . 94))
+(add-to-list 'default-frame-alist '(alpha . (94 . 94)))
 
 ;; NO WINDOW TITLE
 (add-to-list 'default-frame-alist '(undecorated-round . t))
