@@ -631,6 +631,6 @@
   `(org-block-begin-line :background ,(alist-get 'dragonBlack3 kanagawa-wave-palette))
   `(org-block-end-line :background ,(alist-get 'dragonBlack3 kanagawa-wave-palette))
   '(font-lock-comment-face :slant italic)
-   `(region :background ,(alist-get 'waveBlue1 kanagawa-wave-palette))) ; (keep region as is, matches Kanagawa Dragon visual selection)
+  `(region :background ,(alist-get 'waveBlue1 kanagawa-wave-palette))) ; (keep region as is, matches Kanagawa Dragon visual selection)
 (provide 'doom-kanagawa-wave-theme)
 ;;; doom-kanagawa-theme.el ends here
