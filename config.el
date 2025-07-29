@@ -63,16 +63,28 @@
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
-;; (custom-set-faces!
-;;   '(default :background "#1F1F28" :foreground "#DCD7BA")
-;;   '(solaire-default-face :background "#1F1F28")
-;;   '(solaire-mode-line-face :background "#2A2A37")
-;;   '(solaire-mode-line-inactive-face :background "#2A2A37")  '(header-line :background "#1F1F28")
-;;   '(org-block :background "#1F1F28")
-;;   '(org-block-begin-line :background "#1F1F28")
-;;   '(org-block-end-line :background "#1F1F28")
-;;   '(font-lock-comment-face :slant italic)
-;;   '(region :background "#223249"))
+
+
+
+;; --- LSP headerline breadcrumbs ---
+(after! lsp-mode
+  (setq lsp-headerline-breadcrumb-enable t)
+  (setq lsp-headerline-breadcrumb-enable-icons t) ; Enable icons if supported
+  (setq lsp-headerline-breadcrumb-segments '(project file symbols)) ; Show project, file, and symbols
+  (setq lsp-headerline-breadcrumb-separator " \uf105 ") ; Modern separator, or use " \u203a " or " > "
+  ;; Only enable in LSP buffers
+  (add-hook 'lsp-mode-hook #'lsp-headerline-breadcrumb-mode))
+
+(after! lsp-headerline
+  (defun +lsp-headerline-strip-leading-separator (orig-fn &rest args)
+    "Remove leading separator from LSP headerline breadcrumb, robustly."
+    (let* ((res (apply orig-fn args))
+           (sep (or lsp-headerline-breadcrumb-separator " > ")))
+      (if (and (stringp res)
+               (string-match (concat "^" (regexp-quote sep) "+") res))
+          (replace-match "" nil nil res)
+        res)))
+  (advice-add 'lsp-headerline--build-string :around #'+lsp-headerline-strip-leading-separator))
 
 ;; TRANSPARENT BACKGROUND
 ;; (only when window is focused)
