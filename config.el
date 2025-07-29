@@ -155,7 +155,8 @@
       (vterm-send-return))))
 
 (defun +open-lazygit-vterm-cwd ()
-  "Open lazygit in a vterm popup in the current buffer's directory, using /bin/sh for speed."
+  "Open lazygit in a vterm popup in the current buffer's directory, using
+   /bin/sh for speed."
   (interactive)
   (let* ((bufname "*lazygit-vterm-cwd*")
          (default-directory (or (and (boundp 'default-directory) default-directory)
@@ -252,19 +253,6 @@
 
 
 (after! centaur-tabs
-  ;;   (centaur-tabs-group-by-projectile-project) ;;for https://github.com/ema2159/centaur-tabs/issues/181#issuecomment-1075806796
-  ;;   (centaur-tabs-headline-match)
-  ;;   (setq centaur-tabs-style "bar"
-  ;;         centaur-tabs-height 24
-  ;;         centaur-tabs-set-icons t
-  ;;         centaur-tabs-gray-out-icons #'buffer
-  ;;         ;; centaur-tabs-set-bar #'under
-  ;;         x-underline-at-descent-line t
-  ;;         centaur-tabs-close-button "×"
-  ;;         centaur-tabs-modified-marker "•"
-  ;;         centaur-tabs-show-new-tab-button nil
-  ;;         ;; centaur-tabs-show-count t
-  ;;         centaur-tabs-show-navigation-buttons nil)
   (setq centaur-tabs-set-bar 'under
         centaur-tabs-set-icons t
         centaur-tabs-gray-out-icons 'buffer
@@ -277,61 +265,6 @@
         centaur-tabs-show-new-tab-button nil
         centaur-tabs-show-count nil
         centaur-tabs-show-navigation-buttons nil)
-  ;; (defun centaur-tabs-hide-tab (x)
-  ;;   "Do no to show buffer X in tabs."
-  ;;   (let ((name (format "%s" x)))
-  ;;     (or
-  ;;      ;; Current window is not dedicated window.
-  ;;      (window-dedicated-p (selected-window))
-
-  ;;      ;; Buffer name not match below blacklist.
-  ;;      (string-prefix-p "*epc" name)
-  ;;      (string-prefix-p "*helm" name)
-  ;;      (string-prefix-p "*Helm" name)
-  ;;      (string-prefix-p "*Compile-Log*" name)
-  ;;      (string-prefix-p "*lsp" name)
-  ;;      (string-prefix-p "*company" name)
-  ;;      (string-prefix-p "*Flycheck" name)
-  ;;      (string-prefix-p "*tramp" name)
-  ;;      (string-prefix-p " *Mini" name)
-  ;;      (string-prefix-p "*help" name)
-  ;;      (string-prefix-p "*straight" name)
-  ;;      (string-prefix-p " *temp" name)
-  ;;      (string-prefix-p "*Help" name)
-  ;;      (string-prefix-p "*mybuf" name)
-
-  ;;      (string-prefix-p "*doom" name)
-  ;;      (string-prefix-p "*scratch*" name)
-  ;;      (string-prefix-p "*Messages" name)
-
-  ;;      ;; cpp
-  ;;      (string-prefix-p "*clangd" name)
-  ;;      (string-prefix-p "*clangd::stderr" name)
-  ;;      (string-prefix-p "*ccls*" name)
-  ;;      (string-prefix-p "*ccls::stderr*" name)
-  ;;      (string-prefix-p "*format-all-errors*" name)
-
-  ;;      ;; bash
-  ;;      (string-prefix-p "*bash-ls*" name)
-  ;;      (string-prefix-p "*bash-ls::stderr*" name)
-
-  ;;      ;; org
-  ;;      (string-prefix-p "*Org Preview LaTeX Output*" name)
-  ;;      (string-prefix-p "*elfeed-log*" name)
-
-  ;;      ;; python
-  ;;      (string-prefix-p "*pyright*" name)
-  ;;      (string-prefix-p "*pyright::stderr*" name)
-
-  ;;      ;; other
-  ;;      (string-prefix-p "*Native-compile-Log*" name)
-  ;;      (string-prefix-p "*httpd*" name)
-  ;;      (string-prefix-p "*Shell Command Output" name)
-
-  ;;      ;; Is not magit buffer.
-  ;;      (and (string-prefix-p "magit" name)
-  ;;           (not (file-name-extension name)))
-  ;;      )))
   (map! :leader :prefix "b"
         ;; "t n" #'centaur-tabs-forward
         ;; "t p" #'centaur-tabs-backward
@@ -374,4 +307,11 @@
   (tdr/fix-centaur-tabs))
 
 ;; vterm
-(setq vterm-always-compile-module t)
+(setq vterm-always-compile-module nil)
+
+;; Preload vterm module at startup for faster first launch
+(after! vterm
+  (unless (featurep 'vterm-module)
+    (ignore-errors
+      (require 'vterm)
+      (vterm--module-check))))
